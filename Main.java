@@ -64,12 +64,7 @@ class Fraction {
         return "Частное: " + n + "/" + d;
     }
 
-
-    public String toString() {
-        return num + "/" + den;
-    }
-
-    public static int Just(int a, int b) {
+    public static int Just(int a, int b) {   //Упрощение дроби
         do {
             if (a > b)
                 a %= b;
@@ -90,19 +85,19 @@ public class Main {
         String exp = in.nextLine();
         Pattern p = Pattern.compile("-?[0-9]+/-?[1-9]+([+]|-|[*]|:)-?[0-9]+/-?[1-9]+");
         Matcher m = p.matcher(exp);
-        while (!exp.matches(p.pattern())) {
+        while (!exp.matches(p.pattern())) {   //Проверка ввода
             System.out.println("Выражение может содержать только цифры, знаки операций и /, без пробелов.");
             System.out.print("Введите пароль еще раз: ");
             exp = in.next();
         }
 
-        String[] frac = exp.split("([+*:-]|/)");
+        String[] frac = exp.split("([+*:-]|/)");     //Выделение числителей и знаменателей
         int num = Integer.parseInt(frac[0].trim());
         int den = Integer.parseInt(frac[1].trim());
         int num2 = Integer.parseInt(frac[2].trim());
         int den2 = Integer.parseInt(frac[3].trim());
 
-        if (exp.contains("+")) {
+        if (exp.contains("+")) {      //Операции
             Fraction f = new Fraction(num, den); //сложение
             System.out.println(f.sum(num, den, num2, den2));
         } else if (exp.contains("-")) {
@@ -118,4 +113,3 @@ public class Main {
         in.close();
     }
 }
-
